@@ -5,28 +5,6 @@ import MainView from "./MainView";
 function HistoryView({ setView }) {
   const answers = JSON.parse(localStorage.getItem("diary") || "{}");
 
-  // Object.keys(answers); //==> ['18','19']
-  // Object.values(answers); //==> ['abc','123']
-  // Object.entries(answers); //==> [['18','abc'],['20', '123']]
-
-  // Object.keys(answers).map((key) => {
-  //   const value = answers[key];
-  //   key, value;
-  //   return (
-  //     <div>
-  //       {key}: {value}
-  //     </div>
-  //   );
-  // });
-
-  // Object.entries(answers).map(([key, value]) => {
-  //   return (
-  //     <div>
-  //       {key}: {value}
-  //     </div>
-  //   );
-  // });
-
   return (
     <>
       <div style={{ display: "flex", alignItems: "center" }}>
