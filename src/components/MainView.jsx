@@ -5,17 +5,16 @@ import { useEffect, useState } from "react";
 
 function MainView({ setView }) {
   const now = new Date();
-  const date = now.getDate();
+  // const date = now.getDate();
+  const date = 19;
   const month = now.getMonth() + 1;
   const year = now.getFullYear();
   const current = year + "년 " + month + "월 " + date + "일";
 
-  const answers = JSON.parse(localStorage.getItem("diary") || "{}")[date];
+  const answers = JSON.parse(localStorage.getItem("diary") || "{}");
 
-  const [questions, setQuestions] = useState({});
-  const [input, setInput] = useState(
-    JSON.parse(localStorage.getItem("diary") || "{}")[date]
-  );
+  const [questions, setQuestions] = useState();
+  const [input, setInput] = useState(answers[date]);
 
   useEffect(() => {
     fetch(
@@ -53,7 +52,7 @@ function MainView({ setView }) {
           value={input}
           onChange={(e) => {
             const value = e.target.value;
-            setInput(e.target.value);
+            setInput(value);
             localStorage.setItem(
               "diary",
               JSON.stringify({ ...answers, [date]: value })
