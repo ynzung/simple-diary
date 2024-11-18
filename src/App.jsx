@@ -6,6 +6,7 @@ import HistoryView from "./components/HistoryView";
 
 function App() {
   const [view, setView] = useState("main");
+
   return (
     <div className="container">
       {view === "main" ? (

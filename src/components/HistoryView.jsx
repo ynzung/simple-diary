@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./HistoryView.css";
 import MainView from "./MainView";
 
@@ -22,4 +23,9 @@ function HistoryView({ setView }) {
     </>
   );
 }
+
+HistoryView.propTypes = {
+  setView: PropTypes.func,
+};
+
 export default HistoryView;
