@@ -4,13 +4,18 @@ import "./MainView.css";
 import { useEffect, useState } from "react";
 
 function MainView({ setView }) {
-  const [questions, setQuestions] = useState({});
-
   const now = new Date();
   const date = now.getDate();
   const month = now.getMonth() + 1;
   const year = now.getFullYear();
   const current = year + "년 " + month + "월 " + date + "일";
+
+  const answers = JSON.parse(localStorage.getItem("diary") || "{}")[date];
+
+  const [questions, setQuestions] = useState({});
+  const [input, setInput] = useState(
+    JSON.parse(localStorage.getItem("diary") || "{}")[date]
+  );
 
   useEffect(() => {
     fetch(
@@ -18,7 +23,6 @@ function MainView({ setView }) {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setQuestions(data);
       });
   }, []);
@@ -46,8 +50,14 @@ function MainView({ setView }) {
       <div className="question">{questions[date]}</div>
       <div className="content">
         <textarea
-          onChange={() => {
-            console.log("onChange");
+          value={input}
+          onChange={(e) => {
+            const value = e.target.value;
+            setInput(e.target.value);
+            localStorage.setItem(
+              "diary",
+              JSON.stringify({ ...answers, [date]: value })
+            );
           }}
         />
       </div>
