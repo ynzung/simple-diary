@@ -18,12 +18,14 @@ function HistoryView({ setView }) {
         </button>
         <h4>다이어리 기록</h4>
       </div>
-      {Object.entries(answers).map(([key, value]) => (
-        <div key={key} className="diary-item">
-          <div className="diary-date">{key}일</div>
-          <div>{value}</div>
-        </div>
-      ))}
+      {Object.entries(answers).map(([key, value]) => {
+        return (
+          <div key={key} className="diary-item">
+            <div className="diary-date">{key}일</div>
+            <div>{value}</div>
+          </div>
+        );
+      })}
     </>
   );
 }
